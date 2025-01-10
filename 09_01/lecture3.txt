@@ -1,0 +1,53 @@
+Date : 09-01-2025
+
+* A class should only contain attributes with has-a relationship. Hence the List<Employee> declared in the last assignment in wrong.
+
+* Interface and Abstract Classes in java
+1. All the methods declared in an interface are by default public abstract.
+2. All the variables declared in an interface are by default public static final i.e they are available globally. (Need to be initialized compulsorily)
+3. We are inheriting nothing when a class implements an interface.
+4. Implementing an interface just implies a rule that this class must implement the methods compulsorily declared in interface.
+5. The statement that interfaces allow multiple inheritance means,
+WRONG UNDERSTANDING : A class can implement multiple interfaces, yes it is true, but because of rule 3 and 4, it is not the correct explanation.
+CORRECT UNDERSTANDING : An interface can implement more the one interfaces. (interface C implements A, B)
+
+* Interface supports multiple inheritance.
+* But interfaces were not added to support multiple inheritance in java
+
+Why were interfaces added in java?
+If we have a class A on client side and Class B on server side and a method abc() in class A needs to be called from client side to server side which is implemented in Class B. Typically we'll use Class B extends A so that we can call abc() method. But there is one issue, our code can be accessed by client now.
+So, by using interface we can have abstraction and hence achieve security as we are now using Class B implements A.
+One another application of using interfaces is allowing different methods to be accessed by different groups of users by declaring the respective methods in respective interfaces.
+
+Constructor		vs.		Method
+____________________________________________________
+1. Called for creating an object.	Called after creating an object.
+2. Should not have return type.		Should have return type.
+
+Similarities
+___________________
+Initializing of variables is default job of the constructor, but apart from that we can put any logic inside a constructor like a method.
+
+The dissimilarity where we distinguish in writing any logic in constructor or method is that, in constructor we only put the logic which we want to run only once (on the time of object creation) while in methods we write the logic which we want to reuse.
+
+
+Abstract Class							vs.			Interface
+_________________________________________________________________________________________________________________________________________________________
+1. Can have methods with body as well as without body					Only abstract methods.
+2. Has variables which can be modified							Only static final variables are allowed
+3. Can have instance variables								Only static variables
+4. Doesn't support multiple inheritance							Supports MI
+5. Variables/ Methods can have various access modifiers					Only public variables/ method
+6. Can have constructor									Doesn't have constructor.
+
+
+Types of Interfaces
+
+1. Marker Interface
+____________________
+A marker interface is an interface that doesn't have any methods or constants inside it. It provides run-time type information about objects, so the compiler and JVM have additional information about the object. A marker interface is also called a tagging interface. For example "Clonable".
+
+2. Functional Interface
+_________________________
+A functional interface is an interface that has only one method and it should be abstract.
+
