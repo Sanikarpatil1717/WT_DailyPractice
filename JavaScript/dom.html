@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>DOM Demo</title>
+		<script>
+			function welcome1(fname,lname)
+			{
+				alert("WELCOME1 "+fname+" "+lname)
+			}
+			function welcome2()
+			{
+				var fname=document.getElementsByName("t1")[0].value;
+				var lname=document.getElementsByName("t2")[0].value;
+				alert("WELCOME2 "+fname+" "+lname)
+			}
+			function welcome3()
+			{
+				var fname=document.getElementsById("i1").value;
+				var lname=document.getElementsById("i2").value;
+				alert("WELCOME3 "+fname+" "+lname)
+			}
+			function welcome4()
+			{
+				var fname=document.forms[0].t1.value;
+				var lname=document.forms[0].t2.value;
+				alert("WELCOME4 "+fname+" "+lname)
+			}
+			function welcome5()
+			{
+				var fname=document.f1.t1.value;
+				var lname=document.f1.t2.value;
+				alert("WELCOME5 "+fname+" "+lname)
+			}
+
+
+		</script>
+	</head>
+	<body>
+		<h1>DOM Demo</h1>
+		<hr>
+		<h2>GREET USER</h2>
+		<form name="f1">
+		<h3>
+			FName:<input type="text" name="t1" id="i1"><br>
+			LName:<input type="text" name="t2" id="i2"><br>
+			<br>
+			<input type="button" value="WELCOME1" onClick="welcome1(t1.value,t2.value)" >
+			<input type="button" value="WELCOME2" onClick="welcome2()" >
+			<input type="button" value="WELCOME3" onClick="welcome3()" >
+			<input type="button" value="WELCOME4" onClick="welcome4()" >
+			<input type="button" value="WELCOME5" onClick="welcome5()" >
+
+
+		</h3>
+		</form>
+		<hr>
+		<h3>Thank YOU!</h3>
+	</body>
+
+</html>

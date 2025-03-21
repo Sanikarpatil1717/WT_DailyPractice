@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Bank</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>OUR BANK</h1>
+            <p>Banking at Your Doorstep</p>
+        </header>
+        
+        <div class="main">
+            <!-- Sidebar Navigation -->
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services"> Services</a></li>
+                    <li><a href="#netbanking"> Netbanking</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Content Sections -->
+            <section class="content">
+                <div id="home" class="section">
+                    <h2>Welcome to Our Bank</h2>
+                    <p>Your trusted banking partner with 24/7 support.</p>
+                    <img src="bank-image.jpg" alt="Bank Image">
+                </div>
+
+                <div id="about" class="section">
+                    <h2>About Us</h2>
+                    <p>We provide secure and innovative banking solutions to millions of customers worldwide.</p>
+                </div>
+
+                <div id="services" class="section">
+    			<h2>Our Services</h2>
+    			<ul>
+        			<li><a href="calculator.html?type=loan">Loan Calculator</a></li>
+        			<li><a href="calculator.html?type=deposit">Deposit Calculator</a></li>
+    			</ul>
+		</div>
+
+
+                <div id="netbanking" class="section">
+                    <h2>Netbanking Login</h2>
+                    <form id="loginForm">
+                        <label for="customerID">Customer ID:</label>
+                        <input type="text" id="customerID" name="customerID" required pattern="[0-9]{6}" title="Enter a 6-digit customer ID">
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required minlength="6" title="Password must be at least 6 characters">
+
+                        <button type="submit">Login</button>
+                        <p><a href="#signup">Don't have an account? Sign Up</a></p>
+                    </form>
+                </div>
+
+                <div id="signup" class="section">
+                    <h2>Sign Up</h2>
+                    <form id="signupForm">
+                        <label for="newCustomerID">Customer ID:</label>
+                        <input type="text" id="newCustomerID" name="newCustomerID" required pattern="[0-9]{6}" title="Enter a 6-digit customer ID">
+
+                        <label for="newPassword">Password:</label>
+                        <input type="password" id="newPassword" name="newPassword" required minlength="6" title="Password must be at least 6 characters">
+
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6"
+                            oninput="this.setCustomValidity(this.value !== newPassword.value ? 'Passwords do not match.' : '')">
+
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+
+                <div id="contact" class="section">
+                    <h2>Contact Us</h2>
+                    <p> Email: support@ourbank.com</p>
+                    <p> Phone: 123-456-7890</p>
+                    <p> Address: 123 Bank Street, Financial City, USA</p>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Our Bank. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

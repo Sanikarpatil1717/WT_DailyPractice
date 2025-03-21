@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="calculatorTitle">Calculator</h2>
+        <div id="calculatorContent"></div>
+        <a href="index.html">Back to Home</a>
+    </div>
+
+    <script>
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    function loadCalculator() {
+        const type = getQueryParam("type");
+        const contentDiv = document.getElementById("calculatorContent");
+        const title = document.getElementById("calculatorTitle");
+
+        if (type === "loan") {
+            title.innerText = "Loan Calculator";
+            contentDiv.innerHTML = `
+                <label for="applicant">Applicant:</label>
+                <input type="text" id="applicant" required>
+
+                <label>Loan Type:</label>
+                <select id="loanType" onchange="updateLoanDetails()">
+                    <option value="home">Home Loan</option>
+                    <option value="car">Car Loan</option>
+                    <option value="personal">Personal Loan</option>
+                </select>
+
+                <label>Interest Rate (%):</label>
+                <input type="text" id="interestRate" readonly>
+
+                <label>Loan Tenure (Years):</label>
+                <input type="number" id="loanTenure" min="1" required>
+
+                <label>Loan Amount:</label>
+                <input type="number" id="loanAmount" min="10000" max="10000000" required>
+
+                <button onclick="calculateEMI()">Calculate EMI</button>
+                <p class="result">EMI: <span id="emiResult"></span></p>
+            `;
+            updateLoanDetails();
+        } else if (type === "deposit") {
+            title.innerText = "Deposit Calculator";
+            contentDiv.innerHTML = `
+                <label for="principal">Principal Amount:</label>
+                <input type="number" id="principal" min="1000" required>
+
+                <label>Deposit Tenure (Years):</label>
+                <input type="number" id="depositTenure" min="1" max="10" required>
+
+                <label>Interest Rate:</label>
+                <input type="text" value="7%" readonly>
+
+                <button onclick="calculateMaturity()">Calculate</button>
+                <p class="result">Maturity Amount: <span id="maturityResult"></span></p>
+            `;
+        } else {
+            title.innerText = "Invalid Calculator";
+            contentDiv.innerHTML = `<p>Please select a valid calculator from the <a href="index.html">Home Page</a></p>`;
+        }
+    }
+
+    function updateLoanDetails() {
+        const loanType = document.getElementById("loanType").value;
+        const interestField = document.getElementById("interestRate");
+        const tenureField = document.getElementById("loanTenure");
+        
+        let maxTenure, interestRate;
+        if (loanType === "home") {
+            interestRate = 9;
+            maxTenure = 30;
+        } else if (loanType === "car") {
+            interestRate = 11;
+            maxTenure = 7;
+        } else {
+            interestRate = 15;
+            maxTenure = 5;
+        }
+        interestField.value = interestRate + "%";
+        tenureField.max = maxTenure;
+        tenureField.placeholder = `Enter tenure (max ${maxTenure} years)`;
+    }
+
+    function calculateEMI() {
+        let amount = parseFloat(document.getElementById("loanAmount").value);
+        let tenure = parseInt(document.getElementById("loanTenure").value);
+        let rate = parseFloat(document.getElementById("interestRate").value);
+        
+        if (isNaN(amount) || amount < 10000 || amount > 10000000) {
+            alert("Please enter a valid loan amount (10,000 to 10,000,000)");
+            return;
+        }
+        let maxTenure = parseInt(document.getElementById("loanTenure").max);
+        if (tenure > maxTenure || tenure < 1) {
+            alert(`Please enter a tenure between 1 and ${maxTenure} years`);
+            return;
+        }
+        let monthlyRate = rate / 12 / 100;
+        let months = tenure * 12;
+        let emi = (amount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+        document.getElementById("emiResult").innerText = emi.toFixed(2);
+    }
+
+    function calculateMaturity() {
+        let principal = document.getElementById("principal").value;
+        let rate = 7;
+        let tenure = parseInt(document.getElementById("depositTenure").value);
+        if (tenure > 10 || tenure < 1) {
+            alert("Please enter a tenure between 1 and 10 years");
+            return;
+        }
+        let maturity = principal * Math.pow(1 + rate / 100, tenure);
+        document.getElementById("maturityResult").innerText = maturity.toFixed(2);
+    }
+
+    window.onload = loadCalculator;
+    </script>
+</body>
+</html>

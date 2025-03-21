@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<script>
+			function closePage()
+			{
+				var flag=window.confirm("Do You want to close");
+				if(flag)
+					window.close();
+
+			}
+			function greet()
+			{
+				var name=window.prompt("Plz enter ur name");
+				document.write(name);
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Browser Object Model</h1>
+		<hr>
+		<h2>Window Object</h2>
+
+		<script>
+			//window.document.write("HELLO,window is the root obj");
+			document.write("HELLO,window is the root obj");
+			//window.alert("GOOD MORNING");
+			alert("GOOD MORNING");
+		</script>
+		<br><br>
+		<input type="button" value="CLOSE" onClick="closePage()">
+		<input type="button" value="GREET" onClick="greet()">
+
+		<hr>
+		<h2>History Object</h2>
+
+		<script>
+			document.write("HELLO,history is to keep track od url's");
+			
+		</script>
+		<hr>
+		<h2>Navigator Object</h2>
+
+		<script>
+			document.write("HELLO,navigator is to keep track od url's");
+			document.write(navigator.appVersion+"<br>");
+			document.write(navigator.appCodeName+"<br>");
+			document.write(navigator.appName+"<br>");
+		</script>
+		<hr>
+		<h2>Screen Object</h2>
+
+		<script>
+			document.write("HELLO,screen is to keep track od url's");
+			alert("GOOD MORNING");
+		</script>
+		<hr>
+		<h3> THANK YOU </h3>
+	</body>
+</html>
